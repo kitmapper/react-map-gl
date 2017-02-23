@@ -68,8 +68,7 @@
     "precommit": "npm run lint -s",
     "prepush": "npm run lint -s",
     "prepublish": "npm run build",
-    "preinstall": "npm run build",
-    "postinstall": "node postinstall.js",
+    "postinstall": "npm run build && node postinstall.js",
     "profile-disc": "browserify src/index.js --full-paths -t babelify | discify --open"
   },
   "files": [
