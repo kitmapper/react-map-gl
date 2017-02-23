@@ -184,6 +184,11 @@ const PROP_TYPES = {
   altitude: PropTypes.number,
 
   /**
+    * Specify whether the map zooms when scrolled over
+    */
+  scrollZoom: PropTypes.bool,
+
+  /**
     * The load callback is called when all dependencies have been loaded and
     * the map is ready.
     */
@@ -202,7 +207,8 @@ const DEFAULT_PROPS = {
   pitch: 0,
   altitude: 1.5,
   clickRadius: 15,
-  maxZoom: 20
+  maxZoom: 20,
+  scrollZoom: true
 };
 
 @pureRender
@@ -245,11 +251,12 @@ export default class MapGL extends Component {
       center: [this.props.longitude, this.props.latitude],
       zoom: this.props.zoom,
       maxZoom: this.props.maxZoom,
+      scrollZoom: this.props.scrollZoom,
       pitch: this.props.pitch,
       bearing: this.props.bearing,
       style: mapStyle,
       interactive: false,
-      preserveDrawingBuffer: this.props.preserveDrawingBuffer
+      preserveDrawingBuffer: this.props.preserveDrawingBuffer,
       // TODO?
       // attributionControl: this.props.attributionControl
     });
@@ -688,6 +695,7 @@ export default class MapGL extends Component {
           onTouchTap = { this._onTouchTap }
           onZoom ={ this._onZoom }
           onZoomEnd ={ this._onZoomEnd }
+          scrollZoom ={ this.props.scrollZoom }
           width ={ this.props.width }
           height ={ this.props.height }>
 

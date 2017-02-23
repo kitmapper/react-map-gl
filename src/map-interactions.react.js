@@ -93,7 +93,8 @@ export default class Interactions extends Component {
     onTouchEnd: PropTypes.func,
     onTouchTap: PropTypes.func,
     onZoom: PropTypes.func,
-    onZoomEnd: PropTypes.func
+    onZoomEnd: PropTypes.func,
+    scrollZoom: PropTypes.bool
   };
 
   static defaultProps = {
@@ -109,7 +110,8 @@ export default class Interactions extends Component {
     onTouchEnd: noop,
     onTouchTap: noop,
     onZoom: noop,
-    onZoomEnd: noop
+    onZoomEnd: noop,
+    scrollZoom: true
   };
 
   constructor(props) {
@@ -225,6 +227,8 @@ export default class Interactions extends Component {
   /* eslint-disable complexity, max-statements */
   @autobind
   _onWheel(event) {
+    if (!this.props.scrollZoom) return
+
     event.preventDefault();
     let value = event.deltaY;
     // Firefox doubles the values on retina screens...
