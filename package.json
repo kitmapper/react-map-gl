@@ -37,6 +37,7 @@
     "babel-cli": "^6.18.0",
     "babel-core": "^6.18.0",
     "babel-eslint": "^6.0.0",
+    "babel-plugin-transform-class-properties": "^6.23.0",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
@@ -55,13 +56,13 @@
     "immutable": "^3.7.6",
     "react": "15.x",
     "react-dom": "15.x",
+    "tap-browser-color": "^0.1.2",
     "tape": "^4.5.1",
     "tape-catch": "^1.0.4",
-    "tap-browser-color": "^0.1.2",
     "testron": "^1.2.0"
   },
   "scripts": {
-    "build": "babel src -d dist --copy-files --source-maps inline",
+    "build": "babel src -d dist --plugins transform-class-properties --copy-files --source-maps inline",
     "start": "budo ./example/main.js --live --open --port 9966 -- -t babelify -t envify",
     "lint": "eslint src example test",
     "test": "npm run lint && browserify -t babelify -t envify test/index.js | testron",
